@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Passthru
+GenericName=Capture Card Viewer
+Comment=Low-latency viewer for HDMI capture cards
+Exec=passthru
+Icon=io.github.mikodamas.Passthru
+Terminal=false
+Categories=AudioVideo;Video;Player;
+Keywords=capture;hdmi;elgato;console;game;
+StartupWMClass=io.github.mikodamas.Passthru

@@ -1,0 +1,50 @@
+id: io.github.mikodamas.Passthru
+runtime: org.kde.Platform
+runtime-version: '6.9'
+sdk: org.kde.Sdk
+base: com.riverbankcomputing.PyQt.BaseApp
+base-version: '6.9'
+command: passthru
+
+cleanup-commands:
+  - /app/cleanup-BaseApp.sh
+
+build-options:
+  env:
+    - BASEAPP_REMOVE_WEBENGINE=1   # Passthru doesn't need QtWebEngine; keeps the app small
+
+finish-args:
+  - --share=ipc
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --device=all                     # /dev/video* (the capture card) and the GPU
+  - --socket=pulseaudio              # capture card audio in, speakers out
+  - --filesystem=xdg-run/pipewire-0  # lets GStreamer's PipeWire device list work too
+  - --talk-name=org.freedesktop.ScreenSaver  # keep the screen awake while watching
+
+modules:
+  # Python bindings for GStreamer (the KDE runtime has GStreamer itself, but not
+  # necessarily the Python "gi" module).
+  - name: pygobject
+    buildsystem: meson
+    config-opts:
+      - -Dpycairo=disabled
+      - -Dtests=false
+    sources:
+      - type: git
+        url: https://gitlab.gnome.org/GNOME/pygobject.git
+        tag: '3.50.0'
+
+  - name: passthru
+    buildsystem: simple
+    build-commands:
+      - install -Dm755 passthru.py /app/bin/passthru
+      - install -Dm644 io.github.mikodamas.Passthru.desktop /app/share/applications/io.github.mikodamas.Passthru.desktop
+      - install -Dm644 io.github.mikodamas.Passthru.svg /app/share/icons/hicolor/scalable/apps/io.github.mikodamas.Passthru.svg
+    sources:
+      - type: file
+        path: passthru.py
+      - type: file
+        path: io.github.mikodamas.Passthru.desktop
+      - type: file
+        path: io.github.mikodamas.Passthru.svg

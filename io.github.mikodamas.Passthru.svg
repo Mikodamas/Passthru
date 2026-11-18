@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 140 140">
+  <title>Passthru</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#245a42"/>
+      <stop offset="1" stop-color="#0c1f18"/>
+    </linearGradient>
+    <linearGradient id="arrow" gradientUnits="userSpaceOnUse" x1="14" y1="0" x2="126" y2="0">
+      <stop offset="0" stop-color="#bef264"/>
+      <stop offset="1" stop-color="#4ade80"/>
+    </linearGradient>
+  </defs>
+  <rect width="140" height="140" rx="32" fill="url(#bg)"/>
+  <rect x="34" y="42" width="72" height="52" rx="5" fill="none" stroke="#eefbf1" stroke-width="5"/>
+  <line x1="58" y1="110" x2="82" y2="110" stroke="#eefbf1" stroke-width="5" stroke-linecap="round"/>
+  <line x1="14" y1="68" x2="122" y2="68" stroke="url(#arrow)" stroke-width="7" stroke-linecap="round"/>
+  <path d="M112 56 L126 68 L112 80" fill="none" stroke="url(#arrow)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
